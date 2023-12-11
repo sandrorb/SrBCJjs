@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>Cálculo Juros Compostos</title>
+<style>
+	body{
+		font-family: Calibri;
+	}
+	#container {
+		width: 90%;
+		margin: auto;
+	}
+	#formDados{
+		width: 330px;
+		margin: auto;
+		line-height: 30pt;
+		background-color: rgb(176, 209, 247);
+		border-radius: 20px;
+		border: 2px solid #5a1dbd;
+		padding: 20px;
+	}
+	table {
+		font-size: 20px;
+		color: #1111BB;
+	}
+	.dados {
+		margin-left: auto;
+  		margin-right: auto;
+	}
+	table .col1{
+		text-align: right;
+		padding-right: 10px;
+	}
+	table .col2{
+		text-align: center;
+	}
+	input {
+		font-size: 16px;
+		text-align: center;
+		width: 15ch;
+		border: 2px solid rgb(117, 90, 236);
+  		border-radius: 4px;
+		padding: 3px;
+	}
+	.btnCalcular {
+		font-size: 16px;
+		padding: 5px;
+		border-radius: 4px;
+		border: 2px solid rgb(117, 90, 236);
+	}
+</style>
+
+<script>
+	function inicio(){
+		document.getElementById('capInicial').value = "10000.00";
+		document.getElementById('aporte').value = "300.00";
+		document.getElementById('juros').value = "2.50";
+		document.getElementById('tempo').value = "12";
+	}
+	function calcularCapitalFinal(){
+		var capInicial = document.getElementById('capInicial').value;
+		var aporte = document.getElementById('aporte').value;
+		var juros = document.getElementById('juros').value;
+		var tempo = document.getElementById('tempo').value;
+		var i = juros / 100.0;
+		var fator = Math.pow(1 + i, tempo * 12.0);
+		var capFinal = capInicial * fator + aporte * ( fator - 1.0) / i;
+		document.getElementById('capFinal').value = capFinal.toFixed(2);
+	}
+</script>
+
+</head>
+
+<body onload="inicio()">
+
+
+<div id="container">
+	<div id="formDados">
+		<form>
+			<table class="dados">
+				<tr><td class="col1">Capital Inicial</td>
+					<td class="col2"><input id="capInicial" type="number" min="0.00" step="0.01"/></td></tr>
+				<tr><td class="col1">Aporte</td>
+					<td class="col2"><input id="aporte" type="number" min="0.00" step="0.01"/></td></tr>
+				<tr><td class="col1">Juros (%)</td>
+					<td class="col2"><input id="juros" type="number" min="0.00" step="0.01"/> </td></tr>
+				<tr><td class="col1">Tempo (anos)</td>
+					<td class="col2"><input id="tempo" type="number" min="0.00" step="0.01"/>  </td></tr>
+				<tr><td class="col1">Capital Final</td>
+					<td class="col2"><input id="capFinal" type="number" min="0.00" step="0.01"/> </td></tr>
+				<tr><td colspan="2" class="col2"><button class="btnCalcular" type="button"
+									onclick="calcularCapitalFinal()">Calcular</button></td></<tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+
+</body>
+
+</html>
