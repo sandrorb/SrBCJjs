@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 
+<!--
+	Anotações úteis e temporárias:
+	C://users/sandro/eclipse-workspace/SrBCJjs/CalculoJurosCompostos.html
+-->
+
 <head>
 
 <meta charset="UTF-8">
@@ -43,13 +48,25 @@
 		width: 15ch;
 		border: 2px solid rgb(117, 90, 236);
   		border-radius: 4px;
-		padding: 3px;
+		padding: 5px;
 	}
 	.btnCalcular {
 		font-size: 16px;
 		padding: 5px;
+		padding-left: 25px;
+		padding-right: 25px;
 		border-radius: 4px;
 		border: 2px solid rgb(117, 90, 236);
+	}
+	#titulo {
+		font-size: 30px;
+		color: rgb(3, 3, 59);
+		text-align: center;
+		border: 2px solid rgb(117, 90, 236);
+  		border-radius: 4px;
+	}
+	#formulario {
+		margin-top: 20px;
 	}
 </style>
 
@@ -79,7 +96,10 @@
 
 <div id="container">
 	<div id="formDados">
-		<form>
+		<div id="titulo">
+			Cálculo de Capital com Juros Compostos
+		</div>
+		<form id="formulario">
 			<table class="dados">
 				<tr><td class="col1">Capital Inicial</td>
 					<td class="col2"><input id="capInicial" type="number" min="0.00" step="0.01"/></td></tr>
