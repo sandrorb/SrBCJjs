@@ -60,6 +60,7 @@
   		border-radius: 4px;
 		padding: 5px;
 		background-color: rgb(39, 36, 36);
+		margin: 3px;
 	}
 	.btnCalcular {
 		font-size: 16px;
@@ -91,7 +92,11 @@
 	#autor{
 		color: lightgray;
 		margin-top: 20px;
+		margin-right: 10px;
 		text-align: right;
+	}
+	#msg{
+		color: white;
 	}
 </style>
 
@@ -110,7 +115,8 @@
 		var i = juros / 100.0;
 		var fator = Math.pow(1 + i, tempo * 12.0);
 		var capFinal = capInicial * fator + aporte * ( fator - 1.0) / i;
-		document.getElementById('capFinal').value = capFinal.toFixed(2);
+		document.getElementById('capFinal').value = capFinal.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+		//document.getElementById('msg').innerText = capFinal.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
 	}
 </script>
 
@@ -119,33 +125,34 @@
 <body onload="inicio()">
 
 
-<div id="container">
-	<div id="formDados">
-		<div id="titulo">
-			Cálculo de Capital <br> com Juros Compostos
-		</div>
-		<form id="formulario">
-			<table class="dados">
-				<tr><td class="col1">Capital Inicial</td>
-					<td class="col2"><input id="capInicial" type="number" min="0.00" step="0.01"/></td></tr>
-				<tr><td class="col1">Aporte</td>
-					<td class="col2"><input id="aporte" type="number" min="0.00" step="0.01"/></td></tr>
-				<tr><td class="col1">Juros (%)</td>
-					<td class="col2"><input id="juros" type="number" min="0.00" step="0.01"/> </td></tr>
-				<tr><td class="col1">Tempo (anos)</td>
-					<td class="col2"><input id="tempo" type="number" min="0.00" step="0.01"/>  </td></tr>
-				<tr><td class="col1">Capital Final</td>
-					<td class="col2"><input id="capFinal" type="number" min="0.00" step="0.01"/> </td></tr>
-			</table>
-			<div id="btnDiv">
-				<button class="btnCalcular" type="button"
-									onclick="calcularCapitalFinal()">Calcular</button>
+	<div id="container">
+		<div id="formDados">
+			<div id="titulo">
+				Cálculo de Capital <br> com Juros Compostos
 			</div>
-		</form>
-		<div id="autor">Por Sandro Boschetti</div>
+			<form id="formulario">
+				<table class="dados">
+					<tr><td class="col1">Capital Inicial</td>
+						<td class="col2"><input id="capInicial" type="number" min="0.00" step="1000"></td></tr>
+					<tr><td class="col1">Aporte</td>
+						<td class="col2"><input id="aporte" type="number" min="0.00" step="100"/></td></tr>
+					<tr><td class="col1">Juros (%)</td>
+						<td class="col2"><input id="juros" type="number" min="0.00" step="0.10"/></td></tr>
+					<tr><td class="col1">Tempo (anos)</td>
+						<td class="col2"><input id="tempo" type="number" min="0.00" step="1"/></td></tr>
+					<tr><td class="col1">Capital Final</td>
+						<td class="col2"><input id="capFinal" type="text"/></td></tr>
+				</table>
+				<div id="btnDiv">
+					<button class="btnCalcular" type="button"
+										onclick="calcularCapitalFinal()">Calcular</button>
+				</div>
+			</form>
+			<div id="autor">Por Sandro Boschetti</div>
+		</div>
 	</div>
-</div>
 
+	<div id="msg"></div>
 
 </body>
 
