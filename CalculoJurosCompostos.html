@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <!--
 	Anotações úteis e/ou temporárias:
@@ -10,7 +10,12 @@
 
 <head>
 
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="content-language" content="en">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Cálculo Juros Compostos</title>
 <style>
 	body{
@@ -98,6 +103,26 @@
 	#msg{
 		color: white;
 	}
+	#imgFormulaJC{
+		/*visibility: hidden;*/
+		display: none; /*block*/
+		margin-top: 40px;
+  		margin-left: auto;
+  		margin-right: auto;
+  		width: 350px;
+		border-radius: 10px;
+	}
+	#formulaLatex{
+		margin-left: auto;
+  		margin-right: auto;
+		width: 330px;
+		color: lightgray;
+		text-align: center;
+		margin-top: 50px;
+		border: 1px solid gray;
+		border-radius: 10px;
+		padding: 10px;
+	}
 </style>
 
 <script>
@@ -106,7 +131,13 @@
 		document.getElementById('aporte').value = "300.00";
 		document.getElementById('juros').value = "2.50";
 		document.getElementById('tempo').value = "12";
+		invertImg();
 	}
+
+	function invertImg(){
+		document.getElementById("imgFormulaJC").style.filter="invert(90%)";
+	}
+
 	function calcularCapitalFinal(){
 		var capInicial = document.getElementById('capInicial').value;
 		var aporte = document.getElementById('aporte').value;
@@ -118,6 +149,11 @@
 		document.getElementById('capFinal').value = capFinal.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
 		//document.getElementById('msg').innerText = capFinal.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
 	}
+</script>
+
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
 </head>
@@ -153,6 +189,19 @@
 	</div>
 
 	<div id="msg"></div>
+
+	<img id="imgFormulaJC" src="juros_compostos_formula.jpg" alt="">
+
+	<div id="formulaLatex">
+		<strong>Fórmula dos Juros Compostos com Aportes</strong>
+		$$C = C_o \left( 1 + i \right)^n + A \left[ \frac{\left( 1 + i \right)^n - 1}{i} \right]$$
+		C = Capital Final <br>
+		Co = Capital Inicial <br>
+		A = Aporte de cada período <br>
+		i = Taxa de Juros do período <br>
+		n = Número de períodos
+	</div>
+
 
 </body>
 
