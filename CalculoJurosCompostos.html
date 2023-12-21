@@ -22,6 +22,7 @@
 <style>
 	body{
 		font-family: Calibri;
+		font-size: 12pt;
 		background-color: rgb(51, 50, 50);
 	}
 	#container {
@@ -42,7 +43,7 @@
 
 	}
 	table {
-		font-size: 20px;
+		font-size: 12pt;
 		color: darkgray;
 		line-height: 35px;
 	}
@@ -59,7 +60,7 @@
 	}
 	input {
 		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-		font-size: 16px;
+		font-size: 10pt;
 		text-align: center;
 		color: darkgray;
 		width: 15ch;
@@ -70,7 +71,7 @@
 		margin: 3px;
 	}
 	.btnCalcular {
-		font-size: 16px;
+		font-size: 12pt;
 		padding: 5px;
 		padding-left: 25px;
 		padding-right: 25px;
@@ -80,7 +81,7 @@
 		color: black;
 	}
 	#titulo {
-		font-size: 20px;
+		font-size: 16pt;
 		color: lightgray;
 		text-align: center;
 		border: 1px solid gray;
@@ -146,9 +147,11 @@
 		var juros = document.getElementById('juros').value;
 		var tempo = document.getElementById('tempo').value;
 		var i = juros / 100.0;
-		var fator = Math.pow(1 + i, tempo * 12.0);
+		var fator = Math.pow(1.0 + i, tempo * 12.0);
 		var capFinal = capInicial * fator + aporte * ( fator - 1.0) / i;
 		document.getElementById('capFinal').value = capFinal.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+		var capAportado =  aporte * tempo * 12.0 + parseFloat(capInicial);
+		document.getElementById('capAportado').value = capAportado.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
 		//document.getElementById('msg').innerText = capFinal.toLocaleString('pt-BR',{style: 'currency', currency: 'BRL'});
 	}
 </script>
@@ -178,6 +181,8 @@
 						<td class="col2"><input id="juros" type="number" min="0.00" step="0.10"/></td></tr>
 					<tr><td class="col1">Tempo (anos)</td>
 						<td class="col2"><input id="tempo" type="number" min="0.00" step="1"/></td></tr>
+					<tr><td class="col1">Capital Aportado</td>
+						<td class="col2"><input id="capAportado" type="text"/></td></tr>						
 					<tr><td class="col1">Capital Final</td>
 						<td class="col2"><input id="capFinal" type="text"/></td></tr>
 				</table>
